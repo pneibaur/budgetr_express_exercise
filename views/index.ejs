@@ -7,8 +7,21 @@
 </head>
 <body>
     <h1>Transactions</h1>
-    <%for (let i = 0; i < transactions.length; i++) {%>
-        <li><a href="transactions/<%=i%>"><%=transactions[i].name%></a></li>
-        <%}%>
+    <br>
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>Name</th>
+            <th>Amount</th>
+            <th>From</th>
+        </tr>
+        <%for (let i=0; i < transactions.length; i++){%>
+            <tr>
+                <td><%=transactions[i].date%></td>
+                <td><a href="/transactions/<%=i%>"><%=transactions[i].name%></a></td>
+                <td><%=transactions[i].amount%></td>
+            </tr>
+            <%}%>
+    </table>
 </body>
 </html>
