@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Transaction</title>
+</head>
+<body>
+    <h1>New Transaction Item: </h1>
+    <br>
+    <form action="/transactions" method="POST">
+        <label for="date">Date:</label>
+        <input type="text" name="date" id="date-input">
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name-input">
+        <label for="amount">Amount:</label>
+        <input type="text" name="amount" id="amount-input">
+        <label for="from">from</label>
+        <input type="text" name="from" id="from-input">
+        <label for="tags">Tags:</label>
+        <input type="text" name="tags" id="tags-input">
+        <input type="submit" value="Enter Transaction">
+    </form>
+</body>
+</html>

@@ -10,6 +10,10 @@ app.get("/transactions", (request, response)=>{
     response.render("index.ejs", {transactions: transactions})
 })
 
+app.get("/transactions/new", (request, response)=>{
+    response.render("new.ejs")
+})
+
 app.get("/transactions/:index", (request, response)=>{
     response.render("show.ejs", {transaction: transactions[request.params.index]})
 })
