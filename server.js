@@ -10,6 +10,11 @@ app.get("/transactions", (request, response)=>{
     response.render("index.ejs", {transactions: transactions})
 })
 
+app.post("/transactions", (request, response)=>{
+    transactions.push(request.body)
+    response.redirect("/transactions")
+})
+
 app.get("/transactions/new", (request, response)=>{
     response.render("new.ejs")
 })
