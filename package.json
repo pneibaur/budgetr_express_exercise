@@ -1,0 +1,30 @@
+{
+  "name": "budgetr",
+  "version": "1.0.0",
+  "description": "an exercise in ejs and express routes",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pneibaur/budgetr_express_exercise.git"
+  },
+  "keywords": [
+    "ejs",
+    "express",
+    "node",
+    "server"
+  ],
+  "author": "Phil Neibaur",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pneibaur/budgetr_express_exercise/issues"
+  },
+  "homepage": "https://github.com/pneibaur/budgetr_express_exercise#readme",
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "ejs": "^6.0.1",
+    "express": "^5.2.1"
+  }
+}
