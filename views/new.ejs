@@ -6,6 +6,7 @@
     <title>New Transaction</title>
 </head>
 <body>
+    <%- include("partials/header.ejs") %>
     <h1>New Transaction Item: </h1>
     <br>
     <form action="/transactions" method="POST">
@@ -21,5 +22,7 @@
         <input type="text" name="tags" id="tags-input">
         <input type="submit" value="Enter Transaction">
     </form>
+
+    <%- include("partials/footer.ejs") %>
 </body>
 </html>

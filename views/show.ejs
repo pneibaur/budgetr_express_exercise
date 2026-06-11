@@ -6,6 +6,7 @@
     <title>Transaction view</title>
 </head>
 <body>
+    <%- include("partials/header.ejs") %>
     <h1>VIew Transaction: </h1>
     <table>
         <tr>
@@ -28,5 +29,6 @@
         <%}%>
     <br>
     <a href="/transactions">Back to transaction history</a>
+    <%- include("partials/footer.ejs") %>
 </body>
 </html>

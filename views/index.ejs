@@ -1,27 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Transactions</title>
 </head>
+
 <body>
-    <h1>Transactions</h1>
-    <br>
-    <table>
-        <tr>
-            <th>Date</th>
-            <th>Name</th>
-            <th>Amount</th>
-            <th>From</th>
-        </tr>
-        <%for (let i=0; i < transactions.length; i++){%>
+    <%- include("partials/header.ejs") %>
+        <h1>Transactions</h1>
+        <br>
+        <form action="/transactions/new" method="get">
+            <input type="submit" value="Enter new transaction">
+        </form>
+        <table>
             <tr>
-                <td><%=transactions[i].date%></td>
-                <td><a href="/transactions/<%=i%>"><%=transactions[i].name%></a></td>
-                <td><%=transactions[i].amount%></td>
+                <th>Date</th>
+                <th>Name</th>
+                <th>Amount</th>
+                <th>From</th>
             </tr>
-            <%}%>
-    </table>
+            <%for (let i=0; i < transactions.length; i++){%>
+                <tr>
+                    <td>
+                        <%=transactions[i].date%>
+                    </td>
+                    <td><a href="/transactions/<%=i%>">
+                            <%=transactions[i].name%>
+                        </a></td>
+                    <td>
+                        <%=transactions[i].amount%>
+                    </td>
+                </tr>
+                <%}%>
+        </table>
+
+        <%- include("partials/footer.ejs") %>
 </body>
+
 </html>
