@@ -4,7 +4,10 @@ require('dotenv').config()
 const port = process.env.PORT
 let transactions = require("./models/data.js")
 
+// middleware to handle POST routes
 app.use(express.urlencoded({extended: false}))
+// middleware to handle the public folder and stylesheets
+app.use(express.static('public'))
 
 app.get("/transactions", (request, response)=>{
     response.render("index.ejs", {transactions: transactions})

@@ -1,34 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Transaction view</title>
-</head>
 <body>
     <%- include("partials/header.ejs") %>
-    <h1>VIew Transaction: </h1>
-    <table>
-        <tr>
-            <th>Date</th>
-            <th>Name</th>
-            <th>From</th>
-            <th>Amount</th>
-        </tr>
-        <tr>
-            <td><%=transaction.date%></td>
-            <td><%=transaction.name%></td>
-            <td><%=transaction.from%></td>
-            <td><%=transaction.amount%></td>
-        </tr>
-    </table>
-    <br>
-    <h3>Tags:</h3>
-    <%for (let i=0; i < transaction.tags.length; i++){%>
-        <span><%=transaction.tags[i]%></span>
-        <%}%>
-    <br>
-    <a href="/transactions">Back to transaction history</a>
-    <%- include("partials/footer.ejs") %>
+        <main>
+            <h1 class="page-heading">View Transaction</h1>
+            <br>
+            <a href="/transactions" class="home-link">Back to transaction history</a>
+            <div class="table-box">
+                <table class="show-table">
+                    <tr>
+                        <th>Date</th>
+                        <th>Name</th>
+                        <th>From</th>
+                        <th>Amount</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <%=transaction.date%>
+                        </td>
+                        <td>
+                            <%=transaction.name%>
+                        </td>
+                        <td>
+                            <%=transaction.from%>
+                        </td>
+                        <td>
+                            <%=transaction.amount%>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <br>
+            <h3>Tags:</h3>
+            <div class="tags-box">
+                <%for (let i=0; i < transaction.tags.length; i++){%>
+                    <span class="tag-span">
+                        <%=transaction.tags[i]%>
+                    </span>
+                    <%}%>
+            </div>
+            <br>
+        </main>
+        <%- include("partials/footer.ejs") %>
 </body>
+
 </html>
