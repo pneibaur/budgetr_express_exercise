@@ -1,0 +1,67 @@
+<% let tags = transaction.tags %>
+<%- include("partials/header.ejs") %>
+<main>
+    <h1>Let's edit this transaction</h1>
+    <br>
+    <form action="/transactions/<%=index%>?_method=PUT" method="post">    
+        <label for="date">Date</label>
+        <input type="text" name="date" value="<%=transaction.date%>">
+        <label for="name">Name</label>
+        <input type="text" name="name" value="<%=transaction.name%>"> 
+        <label for="amount">Amount</label>
+        <input type="text" name="amount" value="<%=transaction.amount%>"> 
+        <label for="from">From</label>
+        <input type="text" name="from" value="<%=transaction.from%>"> 
+        <label for="tags">Tags</label>
+        <input type="text" name="tags" id="newTag"> 
+        <input type="button" value="add" onclick="addToList(event)">
+        <div id="tag-div"></div>
+        <input type="submit" value="submit changes" id="submit-btn">
+    </form>
+</main>
+<%- include("partials/footer.ejs") %>
+</body>
+</html>
+<script>
+    let tagDiv = document.getElementById("tag-div")
+    let tagsList = <%- JSON.stringify(tags) %>
+    let submitBtn = document.getElementById('submit-btn')
+    let newTag = document.getElementById('newTag')
+
+    function createTagsList(){
+        tagDiv.replaceChildren()
+        for(let i = 0; i < tagsList.length; i++){
+            let div = document.createElement('div')
+            div.textContent = tagsList[i]
+            div.className = 'tag-item'
+            tagDiv.appendChild(div)
+            
+            let btn = document.createElement('input')
+            btn.type = 'button'
+            btn.value = 'X'
+            btn.id = i
+            btn.addEventListener('click', function(event){
+                let index = parseInt(event.currentTarget.id)
+                tagsList.splice(index, 1)
+                console.log("here is tagslist " + tagsList)
+                event.currentTarget.parentElement.remove()
+            })
+            div.appendChild(btn)
+        }
+    }
+
+    function addToList(event){
+        let newTag = document.getElementById("newTag")
+        tagsList.push(newTag.value)
+        newTag.value = ""
+        console.log("here is tagslist again: " + tagsList)
+        createTagsList()
+    }
+
+    createTagsList()
+
+    submitBtn.addEventListener('click', function(){
+        newTag.value = tagsList.join(", ")
+        console.log(newTag.value)
+    })
+</script>

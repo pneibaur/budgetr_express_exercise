@@ -83,3 +83,7 @@ main{
     border-radius: 50px;
     margin: 10px;
 }
+
+#del-tag:hover{
+    display: block;
+}

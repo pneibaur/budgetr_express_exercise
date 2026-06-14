@@ -1,4 +1,3 @@
-<body>
     <%- include("partials/header.ejs") %>
         <main>
             <h1 class="page-heading">View Transaction</h1>
@@ -11,6 +10,8 @@
                         <th>Name</th>
                         <th>From</th>
                         <th>Amount</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
                     </tr>
                     <tr>
                         <td>
@@ -24,6 +25,16 @@
                         </td>
                         <td>
                             <%=transaction.amount%>
+                        </td>
+                        <td>
+                            <form action="/transactions/<%=index%>/edit" method="get">
+                                <input type="submit" value="Edit">
+                            </form>
+                        </td>
+                        <td>
+                            <form action="/transactions/<%=index%>?_method=DELETE" method="post">
+                                <input type="submit" value="Delete">
+                            </form>
                         </td>
                     </tr>
                 </table>
