@@ -46,7 +46,12 @@
             // adds click function to delete current item in array, and removes div
             btn.addEventListener('click', function(event){
                 let index = parseInt(event.currentTarget.id)
-                tagsList.splice(index, 1)
+                // fixes bug where last item wouldn't actually splice due to id naming index issue
+                if(tagsList.length === 1){
+                    tagsList = []
+                }else{
+                    tagsList.splice(index, 1)
+                }
                 event.currentTarget.parentElement.remove()
             })
             div.appendChild(btn)
