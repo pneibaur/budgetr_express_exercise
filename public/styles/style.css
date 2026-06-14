@@ -63,11 +63,12 @@ main{
     min-height: 80vh;
 }
 
-.tag-span{
+.tag-item{
     background-color: #ebba1b;
     border-radius: 50px;
     padding: 7px 15px;
     margin: 5px;
+    max-width: max-content;
 }
 
 .tags-box{
@@ -86,4 +87,13 @@ main{
 
 #del-tag:hover{
     display: block;
+}
+
+.del-btn{
+    background-color: #ffffff00;
+    border: none;
+    border-radius: 50px;
+    padding: 5px;
+    margin-left: 5px;
+    cursor: pointer;
 }

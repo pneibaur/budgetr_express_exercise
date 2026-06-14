@@ -13,9 +13,9 @@
         <label for="from">From</label>
         <input type="text" name="from" value="<%=transaction.from%>"> 
         <label for="tags">Tags</label>
-        <input type="text" name="tags" id="newTag"> 
+        <input type="text" name="tags" id="newTag" placeholder="add tag"> 
         <input type="button" value="add tag" onclick="addToList(event)">
-        <div id="tag-div"></div>
+        <div id="tags-box"></div>
         <input type="submit" value="submit changes" id="submit-btn">
     </form>
 </main>
@@ -24,7 +24,7 @@
 </html>
 <script>
     // declare variables
-    let tagDiv = document.getElementById("tag-div")
+    let tagDiv = document.getElementById("tags-box")
     let tagsList = <%- JSON.stringify(tags) %>
     let submitBtn = document.getElementById('submit-btn')
     let newTag = document.getElementById('newTag')
@@ -42,6 +42,7 @@
             btn.type = 'button'
             btn.value = 'X'
             btn.id = i
+            btn.classList = "del-btn"
             // adds click function to delete current item in array, and removes div
             btn.addEventListener('click', function(event){
                 let index = parseInt(event.currentTarget.id)

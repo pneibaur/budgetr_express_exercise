@@ -14,7 +14,7 @@
                 <label for="tags">Tags:</label>
                 <input type="text" name="tags" id="tags-input">
                 <input type="button" value="add tag"  onclick="addToList()">
-                <div id="taglist-div"></div>
+                <div id="tags-box"></div>
                 <input type="submit" value="Enter Transaction" id="submitBtn">
             </form>
         </main>
@@ -24,12 +24,14 @@
 
 </html>
 <script>
+    // declare variables
     let tagList = []
     let submitBtn = document.getElementById("submitBtn")
     let tagsInput = document.getElementById("tags-input")
 
+    // clears div first, then cycles through array and creates a div and btn
     function renderTagList(){
-        let taglistDiv = document.getElementById("taglist-div")
+        let taglistDiv = document.getElementById("tags-box")
         taglistDiv.replaceChildren()
         for(let i = 0; i < tagList.length; i++){
             if(tagList.length === 0){
@@ -42,8 +44,10 @@
 
             let btn = document.createElement('input')
             btn.type = "button"
+            btn.classList = "del-btn"
             btn.value = 'X'
             btn.id = i
+            // adds click fn to remove item from array and div
             btn.addEventListener("click", function(event){
                 let index = parseInt(event.currentTarget.id)
                 tagList.splice(index, 1)
@@ -53,6 +57,7 @@
         }
     }
 
+    // adds new tag to taglist
     function addToList(){
         let newTag = document.getElementById('tags-input')
         if(newTag.value === ""){
@@ -65,6 +70,7 @@
 
     renderTagList()
 
+    // puts taglist in the input value for submission
     submitBtn.addEventListener("click", function(){
         tagsInput.value = tagList.join(", ")
     })
