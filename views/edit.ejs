@@ -3,21 +3,35 @@
 <main>
     <h1>Let's edit this transaction</h1>
     <br>
-    <form action="/transactions/<%=index%>?_method=PUT" method="post">    
-        <label for="date">Date</label>
-        <input type="text" name="date" value="<%=transaction.date%>">
-        <label for="name">Name</label>
-        <input type="text" name="name" value="<%=transaction.name%>"> 
-        <label for="amount">Amount</label>
-        <input type="text" name="amount" value="<%=transaction.amount%>"> 
-        <label for="from">From</label>
-        <input type="text" name="from" value="<%=transaction.from%>"> 
-        <label for="tags">Tags</label>
-        <input type="text" name="tags" id="newTag" placeholder="add tag"> 
-        <input type="button" value="add tag" onclick="addToList(event)">
-        <div id="tags-box"></div>
-        <input type="submit" value="submit changes" id="submit-btn">
-    </form>
+    <div id="edit-form-box">
+        <form action="/transactions/<%=index%>?_method=PUT" method="post" id="edit-form"> 
+            <div id="date-input-box" class="form-box">
+                <label for="date">Date: </label>
+                <input type="text" name="date" value="<%=transaction.date%>" class="form-input">
+            </div>   
+            <div id="name-input-box" class="form-box">
+                <label for="name">Type: </label>
+                <input type="text" name="name" value="<%=transaction.name%>" class="form-input"> 
+            </div>
+            <div id="amount-input-box" class="form-box">
+                <label for="amount">Amount: </label>
+                <input type="text" name="amount" value="<%=transaction.amount%>" class="form-input"> 
+            </div>
+            <div id="from-input-box" class="form-box">
+                <label for="from">From: </label>
+                <input type="text" name="from" value="<%=transaction.from%>" class="form-input"> 
+            </div>
+            <div id="tags-input-box" class="form-box">
+                <label for="tags">Tags: </label>
+                <input type="text" name="tags" id="newTag" placeholder="add tag" class="form-input"> 
+                <input type="button" value="add tag" onclick="addToList(event)" class="btn tag-btn">
+            </div>
+            <div id="tags-box"></div>
+            <div class="form-box" id="submit-btn-box">
+                <input type="submit" value="submit changes" id="submit-btn" class="btn submit-btn">
+            </div>
+        </form>
+    </div>
 </main>
 <%- include("partials/footer.ejs") %>
 </body>
@@ -25,6 +39,7 @@
 <script>
     // declare variables
     let tagDiv = document.getElementById("tags-box")
+    // this takes the serverside array and passes it to front-end JS to manipulate. it has to stringify the JSON I guess 
     let tagsList = <%- JSON.stringify(tags) %>
     let submitBtn = document.getElementById('submit-btn')
     let newTag = document.getElementById('newTag')

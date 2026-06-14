@@ -21,7 +21,9 @@ header{
     font-size: 36px;
     color: #2a521d;
     font-weight: 900;
-    padding-left: 10px;
+    padding: 10px;
+    border: 3px solid #ebba1b;
+    border-radius: 6px;
 }
 h1{
     font-size: 60px;
@@ -75,6 +77,13 @@ main{
     display: flex;
 }
 
+.tag-btn{
+    border: none;
+    padding: 15px 10px;
+    border-radius: 10px;
+    background-color: #ebba1b;
+}
+
 .home-link{
     text-decoration: none;
     background-color: #2a521d;
@@ -96,4 +105,29 @@ main{
     padding: 5px;
     margin-left: 5px;
     cursor: pointer;
+}
+
+input[type=button],input[type=submit]{
+    cursor: pointer;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+}
+
+.form-input{
+    border: none;
+    border-radius: 10px;
+    font-size: 24px;
+    padding: 12px;
+}
+
+.form-box{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 10px;
+}
+
+.submit-btn{
+    background-color: #ebba1b;
 }

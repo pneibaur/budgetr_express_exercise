@@ -1,83 +1,109 @@
-    <%- include("partials/header.ejs") %>
-        <main>
+<%- include("partials/header.ejs") %>
+    <main id="new-page">
+        <div id="new-heading-box">
             <h1 class="page-heading">New Transaction Item: </h1>
-            <br>
-            <form action="/transactions" method="POST">
-                <label for="date">Date:</label>
-                <input type="text" name="date" id="date-input">
-                <label for="name">Name:</label>
-                <input type="text" name="name" id="name-input">
-                <label for="amount">Amount:</label>
-                <input type="text" name="amount" id="amount-input">
-                <label for="from">from</label>
-                <input type="text" name="from" id="from-input">
-                <label for="tags">Tags:</label>
-                <input type="text" name="tags" id="tags-input">
-                <input type="button" value="add tag"  onclick="addToList()">
-                <div id="tags-box"></div>
-                <input type="submit" value="Enter Transaction" id="submitBtn">
+        </div>
+
+        <br>
+
+        <div id="new-form-box">
+            <form action="/transactions" method="POST" id="new-form">
+                <div id="new-date-box" class="form-box">
+                    <label for="date">Date:</label>
+                    <input type="text" name="date" id="date-input" class="form-input">
+                </div>
+
+                <div id="new-name-box" class="form-box">
+                    <label for="name">Type:</label>
+                    <input type="text" name="name" id="name-input" class="form-input">
+                </div>
+
+                <div id="new-amount-box" class="form-box">
+                    <label for="amount">Amount:</label>
+                    <input type="text" name="amount" id="amount-input" class="form-input">
+                </div>
+
+                <div id="new-from-box" class="form-box">
+                    <label for="from">From: </label>
+                    <input type="text" name="from" id="from-input" class="form-input">
+                </div>
+
+                <div id="new-tag-box" class="form-box">
+                    <label for="tags">Tags:</label>
+                    <input type="text" name="tags" id="tags-input" class="form-input">
+                    <input type="button" value="add tag" onclick="addToList()" id="add-tag-btn" class="btn tag-btn">
+                </div>
+
+                <div id="tags-box" class="form-box"></div>
+
+                <div id="new-submit-box" class="form-box">
+                    <input type="submit" value="Enter Transaction" id="submitBtn" class="btn submit-btn">
+                </div>
             </form>
-        </main>
+        </div>
+    </main>
 
-        <%- include("partials/footer.ejs") %>
-</body>
+    <%- include("partials/footer.ejs") %>
+    </body>
 
-</html>
-<script>
-    // declare variables
-    let tagList = []
-    let submitBtn = document.getElementById("submitBtn")
-    let tagsInput = document.getElementById("tags-input")
+    </html>
+        <script>
+            // declare variables
+            let tagList = []
+            let submitBtn = document.getElementById("submitBtn")
+            let tagsInput = document.getElementById("tags-input")
 
-    // clears div first, then cycles through array and creates a div and btn
-    function renderTagList(){
-        let taglistDiv = document.getElementById("tags-box")
-        taglistDiv.replaceChildren()
-        for(let i = 0; i < tagList.length; i++){
-            if(tagList.length === 0){
-                console.log("nothing to create")
-                return}
-            let div = document.createElement('div')
-            div.textContent = tagList[i]
-            div.className = "tag-item"
-            taglistDiv.appendChild(div)
+            // clears div first, then cycles through array and creates a div and btn
+            function renderTagList() {
+                let taglistDiv = document.getElementById("tags-box")
+                taglistDiv.replaceChildren()
+                for (let i = 0; i < tagList.length; i++) {
+                    if (tagList.length === 0) {
+                        console.log("nothing to create")
+                        return
+                    }
+                    let div = document.createElement('div')
+                    div.textContent = tagList[i]
+                    div.className = "tag-item"
+                    taglistDiv.appendChild(div)
 
-            let btn = document.createElement('input')
-            btn.type = "button"
-            btn.classList = "del-btn"
-            btn.value = 'X'
-            btn.id = i
-            // adds click fn to remove item from array and div
-            btn.addEventListener("click", function(event){
-                let index = parseInt(event.currentTarget.id)
-                // fixes bug where last item wouldn't actually splice due to id naming index issue
-                if(tagList.length === 1){
-                    tagList = []
-                }else{
-                    tagList.splice(index, 1)
+                    let btn = document.createElement('input')
+                    btn.type = "button"
+                    btn.classList = "del-btn"
+                    btn.value = 'X'
+                    btn.id = i
+                    // adds click fn to remove item from array and div
+                    btn.addEventListener("click", function (event) {
+                        let index = parseInt(event.currentTarget.id)
+                        // fixes bug where last item wouldn't actually splice due to id naming index issue
+                        if (tagList.length === 1) {
+                            tagList = []
+                        } else {
+                            tagList.splice(index, 1)
+                        }
+                        console.log("here is taglist: " + tagList)
+                        event.currentTarget.parentElement.remove()
+                    })
+                    div.appendChild(btn)
                 }
-                console.log("here is taglist: " + tagList)
-                event.currentTarget.parentElement.remove()
-            })
-            div.appendChild(btn)
-        }
-    }
-
-    // adds new tag to taglist
-    function addToList(){
-        let newTag = document.getElementById('tags-input')
-        if(newTag.value === ""){
-            return} else{
-                tagList.push(newTag.value)
-                newTag.value = ""
             }
-        renderTagList()
-    }
 
-    renderTagList()
+            // adds new tag to taglist
+            function addToList() {
+                let newTag = document.getElementById('tags-input')
+                if (newTag.value === "") {
+                    return
+                } else {
+                    tagList.push(newTag.value)
+                    newTag.value = ""
+                }
+                renderTagList()
+            }
 
-    // puts taglist in the input value for submission
-    submitBtn.addEventListener("click", function(){
-        tagsInput.value = tagList.join(", ")
-    })
-</script>
+            renderTagList()
+
+            // puts taglist in the input value for submission
+            submitBtn.addEventListener("click", function () {
+                tagsInput.value = tagList.join(", ")
+            })
+        </script>
