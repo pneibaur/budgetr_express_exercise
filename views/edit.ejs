@@ -14,7 +14,7 @@
         <input type="text" name="from" value="<%=transaction.from%>"> 
         <label for="tags">Tags</label>
         <input type="text" name="tags" id="newTag"> 
-        <input type="button" value="add" onclick="addToList(event)">
+        <input type="button" value="add tag" onclick="addToList(event)">
         <div id="tag-div"></div>
         <input type="submit" value="submit changes" id="submit-btn">
     </form>
@@ -23,11 +23,13 @@
 </body>
 </html>
 <script>
+    // declare variables
     let tagDiv = document.getElementById("tag-div")
     let tagsList = <%- JSON.stringify(tags) %>
     let submitBtn = document.getElementById('submit-btn')
     let newTag = document.getElementById('newTag')
 
+    // clears tagDiv first, then cycles through tagList and creates a div and button to show tags
     function createTagsList(){
         tagDiv.replaceChildren()
         for(let i = 0; i < tagsList.length; i++){
@@ -40,21 +42,21 @@
             btn.type = 'button'
             btn.value = 'X'
             btn.id = i
+            // adds click function to delete current item in array, and removes div
             btn.addEventListener('click', function(event){
                 let index = parseInt(event.currentTarget.id)
                 tagsList.splice(index, 1)
-                console.log("here is tagslist " + tagsList)
                 event.currentTarget.parentElement.remove()
             })
             div.appendChild(btn)
         }
     }
 
+    // adding a new entry will add to the tagList, and clear the input. refreshes tag list
     function addToList(event){
         let newTag = document.getElementById("newTag")
         tagsList.push(newTag.value)
         newTag.value = ""
-        console.log("here is tagslist again: " + tagsList)
         createTagsList()
     }
 
@@ -62,6 +64,5 @@
 
     submitBtn.addEventListener('click', function(){
         newTag.value = tagsList.join(", ")
-        console.log(newTag.value)
     })
 </script>
